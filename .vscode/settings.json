@@ -1,35 +1,46 @@
+// https://raw.githubusercontent.com/microsoft/vscode-python/main/.vscode/settings.json
 {
-  "[python]": {
-    "editor.tabSize": 4,
-    "editor.formatOnSave": true,
-    "editor.codeActionsOnSave": {
-      "source.organizeImports": true
-    },
-    "editor.formatOnPaste": false,
-    "editor.formatOnType": false,
-    "editor.insertSpaces": true
+  "files.exclude": {
+      "out": true, // set this to true to hide the "out" folder with the compiled JS files
+      "**/*.pyc": true,
+      ".nyc_output": true,
+      "obj": true,
+      "bin": true,
+      "**/__pycache__": true,
+      "**/node_modules": true,
+      ".vscode-test": false,
+      ".vscode test": false,
+      "**/.mypy_cache/**": true,
+      "**/.ropeproject/**": true
   },
-  "python.pythonPath": "${workspaceFolder}/.venv/bin/python",
-  "python.envFile": "${workspaceFolder}/.env",
-  "python.linting.enabled": true,
-  "python.linting.pylintEnabled": false,
-  "python.linting.pycodestyleEnabled": false,
-  "python.linting.flake8Enabled": true,
+  "search.exclude": {
+      "out": true, // set this to false to include "out" folder in search results
+      "**/node_modules": true,
+      "coverage": true,
+      "languageServer*/**": true,
+      ".vscode-test": true,
+      ".vscode test": true
+  },
+  "[python]": {
+      "editor.formatOnSave": true
+  },
+  "python.linting.enabled": false,
+  "python.testing.promptToConfigure": false,
+  "python.workspaceSymbols.enabled": false,
   "python.formatting.provider": "black",
-  "python.formatting.blackPath": "${workspaceFolder}/.venv/bin/black",
-  "python.sortImports.path": "${workspaceFolder}/.venv/bin/isort",
-  "python.linting.mypyEnabled": true,
-  "python.linting.mypyPath": "${workspaceFolder}/.venv/bin/mypy",
-  "python.linting.mypyArgs": [
-    "--config-file", "mypy.ini"
-  ],
-  "python.testing.unittestEnabled": false,
-  "python.testing.nosetestsEnabled": false,
-  "python.testing.pytestEnabled": true,
-  "python.testing.pytestArgs": [
-    "-vv",
-    "--show-capture=all",
-    "tests"
+  "prettier.printWidth": 120,
+  "prettier.singleQuote": true,
+  "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": true,
+      "source.fixAll.tslint": true
+  },
+  "python.languageServer": "Microsoft",
+  "python.analysis.logLevel": "Trace",
+  "python.linting.pylintEnabled": false,
+  "python.linting.flake8Enabled": true,
+  "python.linting.flake8Args": [
+      // Match what black does.
+      "--max-line-length=79"
   ],
   "autoDocstring.docstringFormat": "google"
 }
