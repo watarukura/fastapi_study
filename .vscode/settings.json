@@ -1,7 +1,6 @@
-// https://raw.githubusercontent.com/microsoft/vscode-python/main/.vscode/settings.json
 {
   "files.exclude": {
-      "out": true, // set this to true to hide the "out" folder with the compiled JS files
+      "out": true,
       "**/*.pyc": true,
       ".nyc_output": true,
       "obj": true,
@@ -14,7 +13,7 @@
       "**/.ropeproject/**": true
   },
   "search.exclude": {
-      "out": true, // set this to false to include "out" folder in search results
+      "out": true,
       "**/node_modules": true,
       "coverage": true,
       "languageServer*/**": true,
@@ -39,7 +38,6 @@
   "python.linting.pylintEnabled": false,
   "python.linting.flake8Enabled": true,
   "python.linting.flake8Args": [
-      // Match what black does.
       "--max-line-length=79"
   ],
   "autoDocstring.docstringFormat": "google"
