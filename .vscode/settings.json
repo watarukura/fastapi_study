@@ -21,7 +21,8 @@
       ".vscode test": true
   },
   "[python]": {
-      "editor.formatOnSave": true
+      "editor.formatOnSave": true,
+      "editor.rulers": [79]
   },
   "python.linting.enabled": false,
   "python.testing.promptToConfigure": false,
