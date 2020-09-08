@@ -1,4 +1,5 @@
-from fastapi import FastAPI, Query, Path
+from fastapi import FastAPI, Path, Query
+
 
 app = FastAPI()
 
@@ -22,4 +23,3 @@ async def validation(
         "alias-query": alias_query,
         "path": path,
     }
-
