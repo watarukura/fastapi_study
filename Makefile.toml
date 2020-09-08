@@ -23,7 +23,7 @@ poetry run mypy --config mypy.ini
 description = "Import Check"
 script = ['''
 #!/usr/bin/env bash
-poetry run isort . -rc
+poetry run isort .
 ''']
 
 [tasks.pytest]
