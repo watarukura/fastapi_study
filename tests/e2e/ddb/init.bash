@@ -1,6 +1,8 @@
 #!/bin/bash
 
-shopt -s expand_aliases
+set -euo -pipefail
+
+# shopt -s expand_aliases
 # alias aws="docker run --rm -it amazon/aws-cli"
 
 function init_ddb() {
@@ -58,7 +60,4 @@ function init_ddb() {
         --endpoint-url http://localhost:18000
 }
 
-if [ ! -e '/tmp/check' ]; then
-    touch /tmp/check
-    init_ddb
-fi
+init_ddb

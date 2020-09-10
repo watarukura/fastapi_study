@@ -1,0 +1,20 @@
+version: '3.4'
+
+services:
+  super-linter:
+    image: github/super-linter
+    restart: always
+    volumes:
+      - ./:/tmp/lint/
+    environment:
+      RUN_LOCAL: "true"
+      VALIDATE_ALL_CODEBASE: "false"
+      VALIDATE_YAML: "true"
+      VALIDATE_MD: "true"
+      VALIDATE_BASH: "true"
+      VALIDATE_PYTHON_BLACK: "true"
+      VALIDATE_DOCKER: "true"
+      ACTIONS_RUNNER_DEBUG: "false"
+      FILTER_REGEX_EXCLUDE: ".venv/*"
+    entrypoint:
+      - /action/lib/linter.sh
