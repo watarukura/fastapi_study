@@ -23,5 +23,3 @@ async def validation(
         "alias-query": alias_query,
         "path": path,
     }
-
-    aaa
