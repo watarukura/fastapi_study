@@ -47,18 +47,11 @@ dependencies = [
 description = "Lint Others"
 script = ['''
 #!/usr/bin/env bash
-docker run superlinter
-''']
-
-[tasks.build_superlint]
-description = "Build for Lint Others"
-script = ['''
-#!/usr/bin/env bash
-docker build -t superlinter --no-cache .
+docker-compose -f docker-compose.super-linter.yml up
+docker-compose -f docker-compose.super-linter.yml down
 ''']
 
 [tasks.lints]
 dependencies = [
-    "build_superlint",
     "superlint"
 ]

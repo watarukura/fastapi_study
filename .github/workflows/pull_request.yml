@@ -17,6 +17,9 @@ jobs:
         with:
           python-version: '3.8'
           architecture: 'x64'
+      
+      - name: Set up reviewdog
+        uses: reviewdog/action-setup@v1
 
       - name: Install dependencies
         run: |
@@ -24,15 +27,21 @@ jobs:
           source $HOME/.poetry/env
           poetry install --no-root
 
-      - name: Lint with black
+      - name: Lint with flake8
         run: |
           source $HOME/.poetry/env
-          poetry run black --check ./
+          poetry run flake8 $(ls src/**.py) $(ls tests/**.py) |
+          reviewdog -efm="%f:%l:%c: %m" -reporter=github-pr-review
+        env:
+          REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Type Check with mypy
         run: |
           source $HOME/.poetry/env
-          poetry run mypy --config mypy.ini
+          poetry run mypy --config mypy.ini |
+          reviewdog -efm="%f:%l: %m" -reporter=github-pr-review
+        env:
+          REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Notify Result to Slack
         uses: homoluctus/slatify@master
@@ -57,23 +66,9 @@ jobs:
           VALIDATE_ALL_CODEBASE: false
           VALIDATE_YAML: true
           VALIDATE_JSON: true
-          VALIDATE_XML: false
           VALIDATE_MD: true
           VALIDATE_BASH: true
-          VALIDATE_PERL: false
-          VALIDATE_PYTHON: false
-          VALIDATE_RUBY: false
-          VALIDATE_COFFEE: false
-          VALIDATE_ANSIBLE: false
-          VALIDATE_JAVASCRIPT_ES: false
-          VALIDATE_JAVASCRIPT_STANDARD: false
-          VALIDATE_TYPESCRIPT_ES: false
-          VALIDATE_TYPESCRIPT_STANDARD: false
-          VALIDATE_DOCKER: false
-          VALIDATE_GO: false
-          VALIDATE_TERRAFORM: false
-          ANSIBLE_DIRECTORY: /ansible
-          ACTIONS_RUNNER_DEBUG: false
+          VALIDATE_DOCKER: true
 
       - name: Notify Result to Slack
         uses: homoluctus/slatify@master
