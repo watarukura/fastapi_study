@@ -26,3 +26,8 @@ services:
     links:
       - db
       - dynamodb
+    environment:
+      DB: test
+      USER: user
+      PASSWORD: pass
+      PORT: 3306

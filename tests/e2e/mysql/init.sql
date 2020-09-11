@@ -1,11 +1,15 @@
 USE test;
 
-CREATE TABLE test_table(
-    test_id varchar(20) primary key,
-    test_column varchar(30)
+CREATE TABLE user (
+    id INT NOT NULL AUTO_INCREMENT,
+    name VARCHAR(30) NOT NULL,
+    age INT,
+    PRIMARY KEY (id)
 );
-INSERT INTO test_table
+
+INSERT INTO
+    user (name, age)
 VALUES
-    ("test_key1", "test_value1"),
-    ("test_key2", "test_value2"),
-    ("test_key3", "test_value3");
+    ("太郎", 15),
+    ("次郎", 18),
+    ("花子", 20);
