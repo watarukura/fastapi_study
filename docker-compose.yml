@@ -18,3 +18,11 @@ services:
       MYSQL_ROOT_PASSWORD: rootpassword
     ports:
       - "3306:3306"
+  app:
+    build: .
+    restart: always
+    ports:
+      - "8800:80"
+    links:
+      - db
+      - dynamodb
