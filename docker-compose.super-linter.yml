@@ -15,6 +15,7 @@ services:
       VALIDATE_PYTHON_BLACK: "true"
       VALIDATE_DOCKER: "true"
       ACTIONS_RUNNER_DEBUG: "false"
-      FILTER_REGEX_EXCLUDE: ".venv/*"
+      FILTER_REGEX_EXCLUDE: ".*(.venv|.git|cache)/.*"
+      LOG_LEVEL: "ERROR"
     entrypoint:
       - /action/lib/linter.sh

@@ -68,9 +68,7 @@ jobs:
           VALIDATE_JSON: true
           VALIDATE_MD: true
           VALIDATE_BASH: true
-          VALIDATE_PYTHON: false
           VALIDATE_DOCKER: true
-          ACTIONS_RUNNER_DEBUG: false
 
       - name: Notify Result to Slack
         uses: homoluctus/slatify@master
