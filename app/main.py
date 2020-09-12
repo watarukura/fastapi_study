@@ -1,10 +1,10 @@
-from typing import List  # ネストされたBodyを定義するために必要
+from typing import List, Optional  # ネストされたBodyを定義するために必要
 
 from fastapi import FastAPI
 from starlette.middleware.cors import CORSMiddleware  # CORSを回避するために必要
 
 from app.db import session  # DBと接続するためのセッション
-from app.model import User, UserTable  # 今回使うモデルをインポート
+from app.model import User, UserDdb, UserTable  # 今回使うモデルをインポート
 
 
 app = FastAPI()
@@ -19,16 +19,17 @@ app.add_middleware(
 )
 
 
-@app.get("/")
-def hello():
-    return {"hello": "world."}
-
-
 # ----------APIの定義------------
 # テーブルにいる全ユーザ情報を取得 GET
 @app.get("/users")
 def read_users():
     users = session.query(UserTable).all()
+    return users
+
+
+@app.get("/users_ddb")
+def read_users_ddb():
+    users = UserDdb.scan()
     return users
 
 
@@ -49,6 +50,19 @@ async def create_user(name: str, age: int):
     user.age = age
     session.add(user)
     session.commit()
+
+
+# ユーザ情報を登録 POST
+@app.post("/user_ddb")
+# クエリでnameとstrを受け取る
+# /user?name="三郎"&age=10
+async def create_user_ddb(id: int, name: str, age: Optional[int] = None):
+    user = UserDdb()
+    user.id = id
+    user.name = name
+    if age:
+        user.age = age
+    user.save()
 
 
 # 複数のユーザ情報を更新 PUT
