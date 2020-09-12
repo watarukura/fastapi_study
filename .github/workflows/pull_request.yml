@@ -30,7 +30,7 @@ jobs:
       - name: Lint with flake8
         run: |
           source $HOME/.poetry/env
-          poetry run flake8 $(ls src/**.py) $(ls tests/**.py) |
+          poetry run flake8 $(ls app/**.py) $(ls tests/**.py) |
           reviewdog -efm="%f:%l:%c: %m" -reporter=github-pr-review
         env:
           REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -111,7 +111,7 @@ jobs:
           AWS_ENDPOINT_URL: http://localhost:18000
         run: |
           source $HOME/.poetry/env
-          poetry run pytest --verbose -s --cov=src ./tests
+          poetry run pytest --verbose -s --cov=app ./tests
 
       - name: Notify Result to Slack
         uses: homoluctus/slatify@master

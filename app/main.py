@@ -3,8 +3,8 @@ from typing import List  # ネストされたBodyを定義するために必要
 from fastapi import FastAPI
 from starlette.middleware.cors import CORSMiddleware  # CORSを回避するために必要
 
-from db import session  # DBと接続するためのセッション
-from model import User, UserTable  # 今回使うモデルをインポート
+from app.db import session  # DBと接続するためのセッション
+from app.model import User, UserTable  # 今回使うモデルをインポート
 
 
 app = FastAPI()

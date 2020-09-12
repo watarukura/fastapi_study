@@ -9,10 +9,12 @@ from sqlalchemy.orm import scoped_session, sessionmaker
 # 接続したいDBの基本情報を設定
 user_name = os.getenv("USER")
 password = os.getenv("PASSWORD")
+# host = "localhost"
 host = "db"
 database_name = os.getenv("DB")
 # port = int(os.getenv("PORT"))
 
+# DATABASE = f"mysql+pymysql://{user_name}:{password}@{host}:{port}/{database_name}?charset=utf8mb4"
 DATABASE = f"mysql+pymysql://{user_name}:{password}@{host}/{database_name}?charset=utf8mb4"
 print(DATABASE)
 

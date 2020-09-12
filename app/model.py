@@ -1,7 +1,7 @@
 from pydantic import BaseModel
 from sqlalchemy import Column, Integer, String
 
-from db import ENGINE, Base
+from app.db import ENGINE, Base
 
 
 # userテーブルのモデルUserTableを定義
