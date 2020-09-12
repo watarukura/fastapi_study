@@ -7,16 +7,14 @@ from sqlalchemy.orm import scoped_session, sessionmaker
 
 
 # 接続したいDBの基本情報を設定
-user_name = os.getenv("USER")
+user = os.getenv("USER")
 password = os.getenv("PASSWORD")
-# host = "localhost"
 host = "db"
-database_name = os.getenv("DB")
-# port = int(os.getenv("PORT"))
+database = os.getenv("DB")
 
-# DATABASE = f"mysql+pymysql://{user_name}:{password}@{host}:{port}/{database_name}?charset=utf8mb4"
-DATABASE = f"mysql+pymysql://{user_name}:{password}@{host}/{database_name}?charset=utf8mb4"
-print(DATABASE)
+DATABASE = (
+    f"mysql+pymysql://{user}:{password}@{host}/{database}?charset=utf8mb4"
+)
 
 # DBとの接続
 ENGINE = create_engine(DATABASE, encoding="utf-8", echo=True)
