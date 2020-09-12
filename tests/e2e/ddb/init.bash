@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -euo -pipefail
+set -euo pipefail
 
 # shopt -s expand_aliases
 # alias aws="docker run --rm -it amazon/aws-cli"
