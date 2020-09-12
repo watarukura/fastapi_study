@@ -23,7 +23,7 @@ poetry run mypy --config mypy.ini
 description = "Import Check"
 script = ['''
 #!/usr/bin/env bash
-poetry run isort .
+poetry run isort --apply --recursive
 ''']
 
 [tasks.pytest]
@@ -31,16 +31,31 @@ description = "Test"
 script = ['''
 #!/usr/bin/env bash
 sleep 10
-poetry run pytest --verbose -s --cov=src ./tests
+poetry run pytest --verbose -s --cov=app ./tests
 ''']
 
+[tasks.docker_up]
+description = "Docker setup"
+script = ['''
+#!/usr/bin/env bash
+docker-compose up -d
+''']
+
+[tasks.docker_down]
+description = "Docker teardown"
+script = ['''
+#!/usr/bin/env bash
+docker-compose down
+''']
 
 [tasks.tests]
 dependencies = [
     "lint",
     "type_check",
     "import_check",
+    "docker_up",
     "pytest",
+    "docker_down",
 ]
 
 [tasks.superlint]
